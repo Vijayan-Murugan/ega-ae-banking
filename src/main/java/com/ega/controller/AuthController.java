@@ -69,4 +69,20 @@ public class AuthController {
 
     }
 
+
+    @PostMapping("/logout")
+//    @PreAuthorize("hasRole('ROLE_ANONYMOUS') or hasRole('ROLE_USER')")
+    public ResponseEntity<?> logout(@RequestBody LoginDto loginDto){
+//        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+//                loginDto.getEmail(), loginDto.getPassword()));
+//        SecurityContextHolder.getContext().setAuthentication(authentication);
+//        // If authentication successful, generate JWT token
+//        UserDetails userDetails = userDetailsService.loadUserByUsername(loginDto.getEmail());
+//        String token = jwtTokenUtil.generateToken(userDetails);
+        Map<String, String> result =  new HashMap<>();
+        result.put("message","logged out  successfully!.");
+        return new ResponseEntity<>(result, HttpStatus.OK);
+    }
+
+
 }

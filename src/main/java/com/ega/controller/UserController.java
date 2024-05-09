@@ -33,14 +33,16 @@ public class UserController {
     private JwtTokenUtil jwtTokenUtil;
     @GetMapping("/me")
     public ResponseEntity<User> getUserDetails(@RequestHeader("Authorization") String token) {
-        String email = jwtTokenUtil.getEmailFromToken(token);
+        String tokenValue = token.split(" ")[1];
+        String email = jwtTokenUtil.getEmailFromToken(tokenValue);
         Optional<User> userOptional  =  userService.getUserByEmailId(email);
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @GetMapping("/account")
     public ResponseEntity<User> getAccountDetails(@RequestHeader("Authorization") String token) {
-        String email = jwtTokenUtil.getEmailFromToken(token);
+        String tokenValue = token.split(" ")[1];
+        String email = jwtTokenUtil.getEmailFromToken(tokenValue);
         Optional<User> userOptional = userService.getUserByEmailId(email);
         return userOptional.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
