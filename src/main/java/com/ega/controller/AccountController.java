@@ -36,7 +36,6 @@ public class AccountController {
         var account = accountService.createAccount(accountCreationDto);
         Map<String, String> response = new HashMap<>();
         response.put("msg", "Account has created successfully");
-
         return new ResponseEntity<>(response, HttpStatus.OK);
 
     }

@@ -10,6 +10,7 @@ public class TransactionMapper {
     public TransactionDto toDto(Transaction transaction) {
         TransactionDto dto = new TransactionDto();
         BeanUtils.copyProperties(transaction,dto);
+        dto.setTransactionType(transaction.getTransactionType());
         dto.setSourceAccountNumber(transaction.getSourceAccount().getAccountNumber());
         if (transaction.getTargetAccount() != null) {
             dto.setTargetAccountNumber(transaction.getTargetAccount().getAccountNumber());

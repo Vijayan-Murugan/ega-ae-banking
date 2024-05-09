@@ -37,7 +37,17 @@ public class AccountService {
         account.setAccountNumber(accountNumber);
         account.setBalance(0.0);
         account.setUser(accountCreationDto.getUser());
+        account.setPin(passwordEncoder.encode(accountCreationDto.getPin()));
         return accountRepository.save(account);
+    }
+
+    public Account getAccountByUserId(Long userId) {
+        Account account = accountRepository.findByUser_Id(userId);
+        if (account == null) {
+            throw new NotFoundException("Account not found");
+        }
+
+        return account;
     }
 
     public boolean isPinCreated(String accountNumber) {

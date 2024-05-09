@@ -32,7 +32,12 @@ public class UserService {
     }
 
     public Optional<User> getUserByEmailId(String email) {
-        return  userRepository.findByEmail(email);
+        Optional<User> user = userRepository.findByEmail(email);
+        if(user.isPresent() && user.get().getAccount() == null) {
+           Account account = accountService.getAccountByUserId(user.get().getId());
+           user.get().setAccount(account);
+        }
+        return user;
     }
 
     public  boolean existsByEmail(String email) {
@@ -55,6 +60,7 @@ public class UserService {
         account.setIfscCode("EGABA00001");
         account.setBranch("UAE WEST");
         savedUser.setAccount(account);
+        account.setPin(passwordEncoder.encode(signUpDto.getPin()));
        return userRepository.saveAndFlush(savedUser);
     }
 
