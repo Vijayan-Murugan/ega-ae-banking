@@ -12,15 +12,10 @@ public class LoggedInUser {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication != null) {
             Object principal = authentication.getPrincipal();
-
             if (principal instanceof UserDetails user) {
-
-
-
-
                 return user.getUsername();
             }
         }
-        throw new NotFoundException("Account number not found in Security Context.");
+        throw new NotFoundException("User Details not found in Security Context.");
     }
 }

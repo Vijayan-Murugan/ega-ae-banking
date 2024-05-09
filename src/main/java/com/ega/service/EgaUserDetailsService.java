@@ -15,14 +15,6 @@ public class EgaUserDetailsService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-//    private final UserRepository repository;
-//    private final PasswordEncoder encoder;
-//    public UserDetailsService(UserRepository repository, PasswordEncoder encoder) {
-//        this.repository = repository;
-//        this.encoder = encoder;
-//    }
-
-
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = userRepository.findByEmail(email);
@@ -32,7 +24,7 @@ public class EgaUserDetailsService implements UserDetailsService {
         return org.springframework.security.core.userdetails.User.builder()
                 .username(user.get().getEmail())
                 .password(user.get().getPassword())
-                .roles("ADMIN","USER","ANONYMOUS")
+                .roles(user.get().getRole())
                 .build();
 
     }

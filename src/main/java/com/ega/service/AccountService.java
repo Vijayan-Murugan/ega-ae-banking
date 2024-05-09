@@ -7,7 +7,6 @@ import com.ega.exception.UnauthorizedException;
 import com.ega.model.Account;
 import com.ega.model.Transaction;
 import com.ega.model.TransactionType;
-import com.ega.model.User;
 import com.ega.repositories.AccountRepository;
 import com.ega.repositories.TransactionRepository;
 import org.springframework.beans.BeanUtils;

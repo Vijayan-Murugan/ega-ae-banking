@@ -4,13 +4,11 @@ import com.ega.dto.SignUpDto;
 import com.ega.model.Account;
 import com.ega.model.User;
 import com.ega.repositories.UserRepository;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
